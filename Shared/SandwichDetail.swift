@@ -8,13 +8,28 @@
 import SwiftUI
 
 struct SandwichDetail: View {
+    var sandwich: Sandwich
+    @State private var zoomed = false
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Image(sandwich.imageName)
+            .resizable()
+            .aspectRatio(contentMode: zoomed ? .fill : .fit)
+            .onTapGesture {
+                withAnimation {
+                    zoomed.toggle()
+                }
+            }
+            .navigationTitle(sandwich.name)
+            .edgesIgnoringSafeArea(.bottom)
     }
+    
 }
 
 struct SandwichDetail_Previews: PreviewProvider {
     static var previews: some View {
-        SandwichDetail()
+        NavigationView{
+            SandwichDetail(sandwich: testData[0])
+        }
     }
 }
