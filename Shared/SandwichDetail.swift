@@ -26,16 +26,19 @@ struct SandwichDetail: View {
             
             Spacer(minLength: 0)
             
-            HStack {
-                Spacer()
-                Label("Spicy", systemImage: "flame.fill")
-                Spacer()
+            if sandwich.isSpicy{
+                HStack {
+                    Spacer()
+                    Label("Spicy", systemImage: "flame.fill")
+                    Spacer()
 
+                }
+                .padding(.all)
+                .font(Font.headline.smallCaps())
+                .background(Color.red)
+                .foregroundColor(.yellow)
             }
-            .padding(.all)
-            .font(Font.headline.smallCaps())
-            .background(Color.red)
-            .foregroundColor(.yellow)
+            
         }
         .navigationTitle(sandwich.name)
         .edgesIgnoringSafeArea(.bottom)
@@ -46,8 +49,13 @@ struct SandwichDetail: View {
 
 struct SandwichDetail_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView{
-            SandwichDetail(sandwich: testData[0])
+        Group {
+            NavigationView{
+                SandwichDetail(sandwich: testData[1])
+            }
+            NavigationView{
+                SandwichDetail(sandwich: testData[0])
+            }
         }
     }
 }
