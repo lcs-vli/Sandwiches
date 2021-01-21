@@ -12,16 +12,34 @@ struct SandwichDetail: View {
     @State private var zoomed = false
 
     var body: some View {
-        Image(sandwich.imageName)
-            .resizable()
-            .aspectRatio(contentMode: zoomed ? .fill : .fit)
-            .onTapGesture {
-                withAnimation {
-                    zoomed.toggle()
+        VStack{
+            Spacer(minLength: 0)
+            
+            Image(sandwich.imageName)
+                .resizable()
+                .aspectRatio(contentMode: zoomed ? .fill : .fit)
+                .onTapGesture {
+                    withAnimation {
+                        zoomed.toggle()
+                    }
                 }
+            
+            Spacer(minLength: 0)
+            
+            HStack {
+                Spacer()
+                Label("Spicy", systemImage: "flame.fill")
+                Spacer()
+
             }
-            .navigationTitle(sandwich.name)
-            .edgesIgnoringSafeArea(.bottom)
+            .padding(.all)
+            .font(Font.headline.smallCaps())
+            .background(Color.red)
+            .foregroundColor(.yellow)
+        }
+        .navigationTitle(sandwich.name)
+        .edgesIgnoringSafeArea(.bottom)
+        
     }
     
 }
