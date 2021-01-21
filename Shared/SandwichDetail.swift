@@ -26,7 +26,7 @@ struct SandwichDetail: View {
             
             Spacer(minLength: 0)
             
-            if sandwich.isSpicy{
+            if sandwich.isSpicy && !zoomed{
                 HStack {
                     Spacer()
                     Label("Spicy", systemImage: "flame.fill")
@@ -37,6 +37,7 @@ struct SandwichDetail: View {
                 .font(Font.headline.smallCaps())
                 .background(Color.red)
                 .foregroundColor(.yellow)
+                .transition(.move(edge: .bottom))
             }
             
         }
